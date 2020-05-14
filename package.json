@@ -4,6 +4,8 @@
     "description": "Node Server Testing Challenge",
     "main": "server.js",
     "scripts": {
+        "start": "node index.js",
+        "server": "nodemon index.js",
         "test": "jest",
         "test:watch": "jest --watch"
     },
@@ -25,6 +27,7 @@
         "gulp": "^4.0.2",
         "gulp-prettier": "^3.0.0",
         "jest": "^24.9.0",
+        "nodemon": "^2.0.4",
         "supertest": "^4.0.2"
     },
     "dependencies": {
