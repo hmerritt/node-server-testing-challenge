@@ -47,4 +47,25 @@ describe("server", () => {
             expect(res.body.message).toEqual("Somthing went wrong");
         });
     });
+
+    describe("POST /items", () => {
+        it("returns HTTP 400 on malformed request", async () => {
+            const res = await request(server).post("/items");
+            expect(res.status).toBe(400);
+            expect(res.body.message).toEqual("missing post data { name: 'your item here' }");
+        });
+
+        it("returns new item added to db", async () => {
+            const res = await request(server).post("/items").send({name: 'new-item'});
+            expect(res.status).toBe(200);
+            expect(res.body.id).toBe(4);
+            expect(res.body.name).toEqual("new-item");
+        });
+
+        it("adds new item to db", async () => {
+            const res = await request(server).post("/items").send({name: 'new-item'});
+            const resAll = await request(server).get("/items");
+            expect(resAll.body[4]).toEqual({id: 5, name: 'new-item'});
+        });
+    });
 });
