@@ -3,11 +3,9 @@ const server = require("./server");
 
 describe("server", () => {
     describe("GET :/", () => {
-        it("should return 200", () => {
-            return request(server).get("/items")
-                .then(res => {
-                    expect(res.status).toBe(200);
-                })
+        it("should return 200", async () => {
+            const res = await request(server).get("/items");
+            expect(res.status).toBe(200);
         });
     });
 });
