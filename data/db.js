@@ -4,12 +4,18 @@ const db = [
     { id: 3, name: "laptop" },
 ];
 
+function itemExists(key) {
+    const found = get(key);
+    if (!found) return false;
+    return true;
+}
+
 function getAll() {
     return db;
 }
 
 function get(key) {
-    return db[key];
+    return db.find(item => item.id === key);
 }
 
 function add(obj) {
@@ -17,7 +23,8 @@ function add(obj) {
 }
 
 function remove(key) {
-    return db.splice(key, 1);
+    const index = db.findIndex(item => item.id === key);
+    return db.splice(index, 1);
 }
 
-module.exports = { getAll, get, add, remove };
+module.exports = { itemExists, getAll, get, add, remove };
