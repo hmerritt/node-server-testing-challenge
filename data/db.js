@@ -15,18 +15,17 @@ function getAll() {
 }
 
 function get(key) {
-    return db.find(item => item.id === key);
+    return db.find((item) => item.id === key);
 }
 
 function add(obj) {
     let id = 1;
-    if (db.length > 0)
-        id = db[db.length - 1].id + 1;
+    if (db.length > 0) id = db[db.length - 1].id + 1;
     return db.push({ id: id, ...obj });
 }
 
 function remove(key) {
-    const index = db.findIndex(item => item.id === key);
+    const index = db.findIndex((item) => item.id === key);
     return db.splice(index, 1);
 }
 
