@@ -13,6 +13,15 @@ router.get("/:id", (req, res, next) => {
     res.json(Db.get(key));
 });
 
+router.post("/", (req, res, next) => {
+    if (!req.body || !req.body.name)
+        return res.status(400).send({ message: "missing post data { name: 'your item here' }" });
+
+    //
+    Db.add(req.body)
+    res.json([...Db.getAll()].reverse()[0]);
+});
+
 router.delete("/:id", (req, res, next) => {
     const key = parseInt(req.params.id);
     if (!Db.itemExists(key)) return next(`key does not exist in db: ${key}`);

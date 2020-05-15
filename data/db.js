@@ -19,7 +19,10 @@ function get(key) {
 }
 
 function add(obj) {
-    return db.push({ id: (db.length + 1), ...obj });
+    let id = 1;
+    if (db.length > 0)
+        id = db[db.length - 1].id + 1;
+    return db.push({ id: id, ...obj });
 }
 
 function remove(key) {
