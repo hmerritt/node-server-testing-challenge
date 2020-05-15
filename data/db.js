@@ -27,4 +27,4 @@ function remove(key) {
     return db.splice(index, 1);
 }
 
-module.exports = { itemExists, getAll, get, add, remove };
+module.exports = { db, itemExists, getAll, get, add, remove };
